@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_adHead.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+      <h1>Should I buy a mobile home?</h1>
+      <div class="reveal">
+        <h2 class="answer">No.</h2>
+
+        <canvas class="graph" width=800 height=600></canvas>
+
+        <div class="params">
+          <input name="price" placeholder="Home value" value="96005.56">
+          <input name="other" placeholder="Other costs" value="4876.98">
+          <input name="interest" placeholder="Interest rate" value="12.5">
+          <input name="down" placeholder="Down payment" value="4.9">
+          <select class="delta">
+            <option value="mobile-home">Mobile home</option>
+            <option value="stable">Traditional home</option>
+          </select>
+          <button class="ready">Set</button>
+        </div>
+      </div>
+
+    </responsive-child>
+
+    <script src="app.js"></script>
+    <%= json.project.production ? t.include("partials/_adFoot.html") : "" %>
+    <%= json.project.production ? t.include("partials/_workHere.html") : "" %>
+  </body>
+</html>
