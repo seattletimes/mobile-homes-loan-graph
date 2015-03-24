@@ -21,7 +21,13 @@ require("./lib/ads");
 var { generateCurves, morphCurves, graphCurves } = require("./curves");
 var finance = require("./finance")
 
-var b = generateCurves(100882.54, 12.5, 4.9, finance.mobileValuation(96005.56));
+var b = generateCurves({
+  amount: 100882.54, 
+  interest: 12.5, 
+  down: 4.9, 
+  valuation: finance.mobileValuation(96005.56),
+  term: 20
+});
 
 var animation = {
   blend: 0,
@@ -34,7 +40,13 @@ var animation = {
     this.raf = requestAnimationFrame(this.frame.bind(this));
   },
   raf: null,
-  a: generateCurves(1, 1, 0, finance.stableValuation(0)),
+  a: generateCurves({
+    amount: 1, 
+    interest: 1, 
+    down: 0, 
+    valuation: finance.stableValuation(0),
+    term: 24
+  }),
   b: null,
   current: null,
   animateTo(dest) {
@@ -62,6 +74,12 @@ var gather = function() {
 
 document.querySelector(".ready").addEventListener("click", function() {
   var params = gather();
-  var dest = generateCurves(params.price + params.other, params.interest, params.down, params.delta(params.price));
+  var dest = generateCurves({
+    amount: params.price + params.other,
+    interest: params.interest,
+    down: params.down,
+    valuation: params.delta(params.price),
+    term: params.term
+  });
   animation.animateTo(dest);
 });

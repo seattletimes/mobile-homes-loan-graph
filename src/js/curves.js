@@ -3,9 +3,10 @@ var finance = require("./finance");
 var canvas = document.querySelector("canvas.graph");
 var context = canvas.getContext("2d");
 
-var generateCurves = function(amount, interest, down, valuation) {
+var generateCurves = function(definition) {
+  var { amount, down, interest, valuation, term } = definition;
   down = down * amount / 100;
-  var schedule = finance.schedule(amount, interest, 24);
+  var schedule = finance.schedule(amount, interest, term);
   var max = schedule[schedule.length - 1].paid + down;
   var curves = {
     max,
@@ -29,7 +30,7 @@ var generateCurves = function(amount, interest, down, valuation) {
 };
 
 var lineDefs = [
-  { prop: "paid", color: "blue" },
+  // { prop: "paid", color: "blue" },
   { prop: "remaining", color: "red" },
   { prop: "value", color: "green" }
 ]
@@ -62,9 +63,10 @@ var morphCurves = function(src, dest, blend) {
     var to = dest[key];
     if (from instanceof Array) {
       var list = morphed[key] = [];
-      for (var i = 0; i < from.length; i++) {
-        var srcItem = from[i];
+      var length = to.length;
+      for (var i = 0; i < length; i++) {
         var destItem = to[i];
+        var srcItem = from[i] || destItem;
         list[i] = srcItem + (destItem - srcItem) * blend;
       }
     } else if (typeof from == "number") {
