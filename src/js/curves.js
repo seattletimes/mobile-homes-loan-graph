@@ -7,12 +7,15 @@ var generateCurves = function(definition) {
   var { amount, down, interest, valuation, term } = definition;
   down = down * amount / 100;
   var schedule = finance.schedule(amount, interest, term);
-  var max = schedule[schedule.length - 1].paid + down;
+  var last = schedule[schedule.length - 1];
+  var max = amount * 1.1;
   var curves = {
     max,
+    paidTotal: last.paid + down,
     paid: [],
     remaining: [],
     value: [],
+    finalValue: valuation(schedule.length - 1),
     intersect: null,
     length: schedule.length
   };
@@ -41,8 +44,8 @@ var graphCurves = function(curves) {
     context.beginPath();
     var curve = curves[def.prop];
     context.moveTo(0, curve[0]);
-    for (var i = 0; i < curve.length; i++) {
-      var x = i / curve.length * canvas.width;
+    for (var i = 0; i < curves.length; i++) {
+      var x = i / curves.length * canvas.width;
       var y = curve[i];
       context.lineTo(x, y);
     }
@@ -53,23 +56,25 @@ var graphCurves = function(curves) {
   var ix = curves.intersect / curves.length * canvas.width;
   context.fillStyle = "rgba(255, 180, 128, .2)";
   context.fillRect(0, 0, ix, canvas.height);
-}
+};
 
 var morphCurves = function(src, dest, blend) {
   var morphed = {};
+  //tween between two curve objects
   for (var key in src) {
     if (!key in dest) continue;
     var from = src[key];
     var to = dest[key];
+    //if it's an array, recurse through
     if (from instanceof Array) {
       var list = morphed[key] = [];
-      var length = to.length;
-      for (var i = 0; i < length; i++) {
+      for (var i = 0; i < to.length; i++) {
         var destItem = to[i];
         var srcItem = from[i] || destItem;
         list[i] = srcItem + (destItem - srcItem) * blend;
       }
     } else if (typeof from == "number") {
+      //otherwise, blend directly
       morphed[key] = from + (to - from) * blend;
     }
   }

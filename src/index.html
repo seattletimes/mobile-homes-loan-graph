@@ -17,16 +17,50 @@
         <canvas class="graph" width=800 height=400></canvas>
 
         <div class="params">
-          <input name="price" placeholder="Home value" value="96005.56">
-          <input name="other" placeholder="Other costs" value="4876.98">
-          <input name="interest" placeholder="Interest rate" value="12.5">
-          <input name="down" placeholder="Down payment" value="4.9">
-          <input name="term" placeholder="Term" value="24">
-          <select class="delta">
-            <option value="mobile-home">Mobile home</option>
-            <option value="stable">Traditional home</option>
-          </select>
-          <button class="ready">Set</button>
+          <div class="read-only">
+            <label>
+              Final home value:
+              <input name="finalValue" disabled value="0">
+            </label>
+            <label>
+              Total paid:
+              <input name="paidTotal" disabled value="0">
+            </label>
+            <label>
+              Debt free at:
+              <input name="debtFree" disabled value="0">
+            </label>
+          </div>
+          <div class="writable">
+            <label>
+              Home value:
+              <input name="price" value="96005.56">
+            </label>
+            <label>
+              Other closing costs:
+              <input name="other" value="4876.98">
+            </label>
+            <label>
+              Interest rate:
+              <input name="interest" value="12.5">
+            </label>
+            <label>
+              Down payment:
+              <input name="down" value="4.9">
+            </label>
+            <label>
+              Loan term (years):
+              <input name="term" value="24">
+            </label>
+            <label>
+              Home value curve:
+              <select name="delta">
+                <option value="mobile-home">Mobile home</option>
+                <option value="stable">Traditional home</option>
+              </select>
+            </label>
+          </div>
+          <button class="regenerate">See changes</button>
         </div>
       </div>
 
