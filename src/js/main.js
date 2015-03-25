@@ -7,8 +7,17 @@ var finance = require("./finance");
 var params = require("./bindings");
 var presets = require("./presets");
 
+// params.on("change", console.log.bind(console));
+
 var breakEven = document.querySelector(`[name="break-even"]`);
 var finalPrice = document.querySelector(`[name="final-value"]`);
+var totalPaid = document.querySelector(`[name="total-paid"]`);
+
+var dollars = function(n) {
+  if (typeof n == "string") n *= 1;
+  n = (n.toFixed(2) * 1).toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+  return "$" + n;
+}
 
 var graph = function(params) {
   var valuation = params.delta == "stable" ? finance.stableValuation : finance.mobileValuation;
@@ -20,7 +29,8 @@ var graph = function(params) {
     term: params.term
   });
   breakEven.value = `${dest.intersect} months`;
-  finalPrice.value = `$${dest.finalValue.toFixed(2)}`;
+  finalPrice.value = dollars(dest.finalValue);
+  totalPaid.value = dollars(dest.paidTotal);
   animate(dest);
 };
 
@@ -65,4 +75,5 @@ params.on("change", function() {
   graph(params);
 });
 
-params.emit("change", "preset", "Ackley");
+//start on the first preset
+params.emit("change", "preset", document.querySelector(`[name="preset"]:checked`).value);

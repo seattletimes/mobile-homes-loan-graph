@@ -13,7 +13,7 @@
       <main class="interactive">
 
         <h1>Should I buy a mobile home?</h1>
-        <div class="reveal">
+        <form class="reveal" autocomplete="off">
           <h2 class="answer">No.</h2>
 
           <h3>Choose a scenario:</h3>
@@ -61,7 +61,7 @@
               <input type="radio" name="term" value="20" id="term20">
               <label for="term20">20 years</label>
 
-              <input type="radio" name="term" value="24" id="term24" checked>
+              <input type="radio" name="term" value="24" id="term24">
               <label for="term24">24 years</label>
 
               <input type="radio" name="term" value="30" id="term30">
@@ -78,6 +78,10 @@
               <label>Break-even point:</label>
               <input name="break-even" type="text" disabled>
             </div>
+            <div>
+              <label>Total paid:</label>
+              <input name="total-paid" type="text" disabled>
+            </div>
           </section>
 
           <section class="graph-container">
@@ -85,7 +89,7 @@
             <!-- TODO: final house value, break-even point -->
           </section>
 
-        </div>
+        </form>
 
       </main>
     </responsive-child>
