@@ -4,35 +4,13 @@ require("./lib/ads");
 
 var { generateCurves, morphCurves, graphCurves } = require("./curves");
 var finance = require("./finance");
+var params = require("./bindings");
+var presets = require("./presets");
 
-//faux two-way binding
-var params = {};
+var breakEven = document.querySelector(`[name="break-even"]`);
+var finalPrice = document.querySelector(`[name="final-value"]`);
 
-var bindParams = function(e) {
-  if (e.keyCode == 13) {
-    return graphFromParams();
-  }
-  var prop = e.target.name;
-  var val = e.target.tagName == "INPUT" ? e.target.value * 1 : e.target.value;
-  params[prop] = val;
-};
-
-var bindings = {};
-
-[].slice.call(document.querySelectorAll(".params [name]")).forEach(function(element) {
-  var value = element.tagName == "INPUT" ? element.value * 1 : element.value;
-  params[element.name] = value;
-  bindings[element.name] = element;
-});
-
-var updateParams = function() {
-  for (var key in bindings) {
-    if (typeof params[key] == "undefined") continue;
-    bindings[key].value = params[key];
-  }
-};
-
-var graphFromParams = function() {
+var graph = function(params) {
   var valuation = params.delta == "stable" ? finance.stableValuation : finance.mobileValuation;
   var dest = generateCurves({
     amount: params.price + params.other,
@@ -41,13 +19,10 @@ var graphFromParams = function() {
     valuation: valuation(params.price),
     term: params.term
   });
+  breakEven.value = `${dest.intersect} months`;
+  finalPrice.value = `$${dest.finalValue.toFixed(2)}`;
   animate(dest);
 };
-
-var form = document.querySelector(".params");
-form.addEventListener("keyup", bindParams);
-form.addEventListener("change", bindParams);
-form.querySelector(".regenerate").addEventListener("click", graphFromParams);
 
 //animation properties
 var blend = 0;
@@ -58,34 +33,19 @@ var start = generateCurves({
   valuation: finance.stableValuation(0),
   term: 24
 });
-var finish = generateCurves({
-  amount: 100882.54, 
-  interest: 12.5, 
-  down: 4.9, 
-  valuation: finance.mobileValuation(96005.56),
-  term: 24
-});
+var finish = null;
 var current = null;
 var raf;
-
-var setParamsFromCurve = function(curve) {
-  for (var key in curve) {
-    if (bindings[key]) {
-      params[key] = (curve[key].toFixed(2) * 1).toLocaleString();
-    }
-  }
-  var years = Math.floor(curve.intersect / 12);
-  var months = Math.floor(curve.intersect % 12);
-  params.debtFree = `${years} years, ${months} month(s)`;
-  updateParams();
-};
+var lastFrame = null;
+var duration = 400;
 
 var frame = function() {
-  blend += .01;
+  var now = Date.now();
+  var elapsed = now - lastFrame;
+  var blend = elapsed / duration;
   if (blend > 1) blend = 1;
   current = morphCurves(start, finish, blend);
   graphCurves(current);
-  setParamsFromCurve(current);
   if (blend == 1) return;
   raf = requestAnimationFrame(frame);
 };
@@ -95,9 +55,14 @@ var animate = function(dest) {
   blend = 0;
   if (current) start = current;
   finish = dest || finish;
+  lastFrame = Date.now();
   frame();
 };
 
-updateParams();
 graphCurves(start);
-animate();
+
+params.on("change", function() {
+  graph(params);
+});
+
+params.emit("change", "preset", "Ackley");

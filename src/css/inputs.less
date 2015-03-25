@@ -1,0 +1,37 @@
+@import "values";
+
+input[type=radio] {
+  display: none;
+
+  & + label {
+    display: inline-block;
+    padding: 4px;
+    border: 1px solid #555;
+    color: #555;
+    font-family: @df-sans;
+    text-align: center;
+    font-size: 14px;
+
+    &:first-of-type {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-of-type {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  &:checked + label {
+    color: white;
+    background: #555;
+    font-weight: bold;
+  }
+}
+
+input[disabled] {
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  display: inline-block;
+  width: auto;
+}

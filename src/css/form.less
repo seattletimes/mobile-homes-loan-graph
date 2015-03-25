@@ -1,0 +1,61 @@
+@import "flexbox";
+
+h3 {
+  margin: 0;
+}
+
+.presets {
+  .display-flex;
+  width: 100%;
+
+  label {
+    .flex(1);
+  }
+}
+
+.preset-description {
+  font-size: 16px;
+}
+
+.params {
+  overflow: hidden;
+
+  & > div {
+    width: 50%;
+    float: left;
+    .display-flex;
+
+    label.inline, input {
+      .flex(1);
+      margin-top: 4px;
+    }
+
+    label.inline {
+      border-bottom: 1px dotted #888;
+    }
+
+    input {
+      margin-right: 4px;
+      background: none;
+      border: none;
+      border-bottom: 1px solid black;
+      text-align: right;
+      font-size: 16px;
+    }
+
+    &.full {
+      clear: both;
+      width: 100%;
+      float: none;
+      margin-top: 4px;
+      padding: 20px;
+      font-size: 14px;
+
+      .display-flex;
+
+      & > label {
+        .flex(1);
+      }
+    }
+  }
+}

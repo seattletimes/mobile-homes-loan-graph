@@ -10,60 +10,84 @@
   <body>
 
     <responsive-child>
-      <h1>Should I buy a mobile home?</h1>
-      <div class="reveal">
-        <h2 class="answer">No.</h2>
+      <main class="interactive">
 
-        <canvas class="graph" width=800 height=400></canvas>
+        <h1>Should I buy a mobile home?</h1>
+        <div class="reveal">
+          <h2 class="answer">No.</h2>
 
-        <div class="params">
-          <div class="read-only">
-            <label>
-              Final home value:
-              <input name="finalValue" disabled value="0">
-            </label>
-            <label>
-              Total paid:
-              <input name="paidTotal" disabled value="0">
-            </label>
-            <label>
-              Debt free at:
-              <input name="debtFree" disabled value="0">
-            </label>
-          </div>
-          <div class="writable">
-            <label>
-              Home value:
-              <input name="price" value="96005.56">
-            </label>
-            <label>
-              Other closing costs:
-              <input name="other" value="4876.98">
-            </label>
-            <label>
-              Interest rate:
-              <input name="interest" value="12.5">
-            </label>
-            <label>
-              Down payment:
-              <input name="down" value="4.9">
-            </label>
-            <label>
-              Loan term (years):
-              <input name="term" value="24">
-            </label>
-            <label>
-              Home value curve:
-              <select name="delta">
-                <option value="mobile-home">Mobile home</option>
-                <option value="stable">Traditional home</option>
-              </select>
-            </label>
-          </div>
-          <button class="regenerate">See changes</button>
+          <h3>Choose a scenario:</h3>
+          <section class="presets">
+            <input type="radio" name="preset" value="Ackley" id="ackley" checked>
+            <label for="ackley">Ackley</label>
+            
+            <input type="radio" name="preset" value="Mansfield" id="mansfield">
+            <label for="mansfield">Mansfield</label>
+            
+            <input type="radio" name="preset" value="Galler" id="galler">
+            <label for="galler">Galler</label>
+            
+            <input type="radio" name="preset" value="trailer" id="trailer">
+            <label for="trailer">Mobile home</label>
+            
+            <input type="radio" name="preset" value="house" id="house">
+            <label for="house">Conventional home</label>
+          </section>
+          <section class="preset-description">
+            This is the spot where we'll have a short, one-sentence description of each preset.
+          </section>
+
+          <section class="params">
+            <div>
+              <label class="inline">Price</label>
+              <input name="price" type="text">
+            </div>
+            <div>
+              <label class="inline">Other costs</label>
+              <input name="other" type="text">
+            </div>
+            <div>
+              <label class="inline">Interest rate</label>
+              <input name="interest" type="text">
+            </div>
+            <div>
+              <label class="inline">Down payment</label>
+              <input name="down" type="text">
+            </div>
+            <div class="full">
+              <input type="radio" name="term" value="15" id="term15">
+              <label for="term15">15 years</label>
+
+              <input type="radio" name="term" value="20" id="term20">
+              <label for="term20">20 years</label>
+
+              <input type="radio" name="term" value="24" id="term24" checked>
+              <label for="term24">24 years</label>
+
+              <input type="radio" name="term" value="30" id="term30">
+              <label for="term30">30 years</label>
+            </div>
+          </section>
+
+          <section class="outcomes">
+            <div>
+              <label>Final home value:</label>
+              <input name="final-value" type="text" disabled>
+            </div>
+            <div>
+              <label>Break-even point:</label>
+              <input name="break-even" type="text" disabled>
+            </div>
+          </section>
+
+          <section class="graph-container">
+            <canvas class="graph" width=800 height=400></canvas>
+            <!-- TODO: final house value, break-even point -->
+          </section>
+
         </div>
-      </div>
 
+      </main>
     </responsive-child>
 
     <script src="app.js"></script>

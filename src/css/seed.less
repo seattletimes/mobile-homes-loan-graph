@@ -7,30 +7,23 @@
 
 @import "seattletimes";
 
-canvas.graph {
-  background: #EEE;
+@import "inputs";
+@import "form";
+
+body {
+  background: #888;
+  margin: 0;
+  padding: 0;
 }
 
-.params {
-  input, input[disabled] {
-    text-align: center;
-    font-size: 20px;
-    background: white;
-    border: none;
-    border-bottom: 1px solid black;
-    width: 140px;
-    font-family: monospace;
-  }
+main.interactive {
+  padding: 8px;
+  width: 800px;
+  margin: auto;
+  background: white;
+}
 
-  input[disabled] {
-    color: #555;
-    border-bottom: 1px solid #EEE;
-  }
-
-  select {
-    font-size: 20px;
-    background: #EEE;
-    border: none;
-    font-family: monospace;
-  }
+canvas.graph {
+  border: 1px solid #eee;
+  width: 100%;
 }
