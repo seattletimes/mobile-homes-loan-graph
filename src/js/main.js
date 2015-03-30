@@ -34,17 +34,23 @@ var graph = function(params) {
     term: params.term
   });
 
-  var ix = dest.intersect / dest.length * canvas.offsetWidth
-  transform.setXY(breakEvenTip, ix, dest.value[dest.intersect] - 4);
-  if (ix < canvas.offsetWidth / 4) {
-    breakEvenTip.classList.add("left");
+  if (dest.intersect) {
+    breakEvenTip.classList.remove("hidden");
+    var ix = dest.intersect / dest.length * canvas.offsetWidth;
+    var iy = dest.value[dest.intersect] * (canvas.offsetHeight / canvas.height);
+    transform.setXY(breakEvenTip, ix, iy);
+    if (ix < canvas.offsetWidth / 4) {
+      breakEvenTip.classList.add("left");
+    } else {
+      breakEvenTip.classList.remove("left");
+    }
+    if (ix > canvas.offsetWidth * .75) {
+      breakEvenTip.classList.add("right");
+    } else {
+      breakEvenTip.classList.remove("right");
+    }
   } else {
-    breakEvenTip.classList.remove("left");
-  }
-  if (ix > canvas.offsetWidth * .75) {
-    breakEvenTip.classList.add("right");
-  } else {
-    breakEvenTip.classList.remove("right");
+    breakEvenTip.classList.add("hidden");
   }
 
   //update text readouts
@@ -52,7 +58,7 @@ var graph = function(params) {
   var yearText = years == 1 ? "year" : "years";
   var months = dest.intersect % 12;
   var monthText = months == 1 ? "month" : "months";
-  var duration = `${years} ${yearText}, ${months} ${monthText}`;
+  var duration = `Break-even:<br>${years} ${yearText}, ${months} ${monthText}`;
   var priceComparison = (dest.finalValue / params.price * 100).toFixed(1);
   var paidComparison = (dest.paidTotal / payment * 100).toFixed(1);
   breakEven.innerHTML = duration;

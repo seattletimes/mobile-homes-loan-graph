@@ -1,7 +1,21 @@
 @import "flexbox";
 
 h3 {
-  margin: 0;
+  margin-bottom: 0;
+}
+
+.presets {
+  .display-flex;
+
+  .generic.button-bar {
+    .flex(1 1 0%);
+    margin-right: 4px;
+  }
+
+  .case-study.button-bar {
+    .flex(3 3 0%);
+  }
+
 }
 
 .preset-description {

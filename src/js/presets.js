@@ -27,12 +27,12 @@ module.exports = {
     depreciates: true
   },
   "trailer": {
-    description: "This preset simulates the depreciation of a mobile home over time, at a rate of 5% yearly (against the original price) for the first three years, and 5% every two years after that.",
-    term: 15,
-    interest: 4.5,
+    description: "Simulates a typical mobile home purchase.",
+    term: 20,
+    interest: 10,
     price: 80000,
     other: 2000,
-    down: 20,
+    down: 10,
     customize: true,
     depreciates: true
   },
