@@ -32,8 +32,11 @@ var mobileValuation = function(amount) {
       //first three years
       return amount - (amount * (.05 * month / 12));
     }
-    //halved after first three years
-    return amount - (amount * (.15 + (.05 * (month - 36) / 24)));
+    //halved after that, up to 25 years
+    if (month < 12 * 25) {
+      return amount - (amount * (.15 + (.05 * (month - 36) / 24)));
+    }
+    return amount * .3;
   };
 }
 
