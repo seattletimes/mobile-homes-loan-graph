@@ -25,14 +25,26 @@ h3 {
 .params {
   overflow: hidden;
 
+  @media @mobile {
+    // display: none;
+  }
+
   & > div {
     width: 50%;
     float: left;
     .display-flex;
 
+    @media @mobile {
+      display: block;
+    }
+
     label.inline, input {
       .flex(1);
       margin-top: 4px;
+
+      @media @mobile {
+        .flex(none);
+      }
     }
 
     label.inline {

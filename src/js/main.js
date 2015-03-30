@@ -10,11 +10,10 @@ var transform = require("./transform");
 
 // params.on("change", console.log.bind(console));
 
-var breakEven = document.querySelector(".break-even.output");
 var finalPrice = document.querySelector(".final-value.output");
 var totalPaid = document.querySelector(".total-paid.output");
-var breakEvenTip = document.querySelector(".break-even.balloon");
-var breakEvenTipContents = breakEvenTip.querySelector(".contents");
+var breakEven = document.querySelector(".break-even.balloon");
+var breakEvenContents = breakEven.querySelector(".contents");
 var canvas = document.querySelector("canvas.graph");
 
 var dollars = function(n) {
@@ -35,22 +34,22 @@ var graph = function(params) {
   });
 
   if (dest.intersect) {
-    breakEvenTip.classList.remove("hidden");
+    breakEven.classList.remove("hidden");
     var ix = dest.intersect / dest.length * canvas.offsetWidth;
     var iy = dest.value[dest.intersect] * (canvas.offsetHeight / canvas.height);
-    transform.setXY(breakEvenTip, ix, iy);
+    transform.setXY(breakEven, ix, iy);
     if (ix < canvas.offsetWidth / 4) {
-      breakEvenTip.classList.add("left");
+      breakEven.classList.add("left");
     } else {
-      breakEvenTip.classList.remove("left");
+      breakEven.classList.remove("left");
     }
     if (ix > canvas.offsetWidth * .75) {
-      breakEvenTip.classList.add("right");
+      breakEven.classList.add("right");
     } else {
-      breakEvenTip.classList.remove("right");
+      breakEven.classList.remove("right");
     }
   } else {
-    breakEvenTip.classList.add("hidden");
+    breakEven.classList.add("hidden");
   }
 
   //update text readouts
@@ -61,8 +60,7 @@ var graph = function(params) {
   var duration = `Break-even:<br>${years} ${yearText}, ${months} ${monthText}`;
   var priceComparison = (dest.finalValue / params.price * 100).toFixed(1);
   var paidComparison = (dest.paidTotal / payment * 100).toFixed(1);
-  breakEven.innerHTML = duration;
-  breakEvenTipContents.innerHTML = duration;
+  breakEvenContents.innerHTML = duration;
   finalPrice.innerHTML = `${dollars(dest.finalValue)} (${priceComparison}% original value)`;
   totalPaid.innerHTML = `${dollars(dest.paidTotal)} (${paidComparison}% principal)`;
   animate(dest);
