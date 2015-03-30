@@ -21,20 +21,24 @@
 
           <h3>Choose a scenario:</h3>
           <section class="presets">
-            <input type="radio" name="preset" value="Ackley" id="ackley" checked>
-            <label for="ackley">Ackley</label>
-            
-            <input type="radio" name="preset" value="Mansfield" id="mansfield">
-            <label for="mansfield">Mansfield</label>
-            
-            <input type="radio" name="preset" value="Galler" id="galler">
-            <label for="galler">Galler</label>
-            
-            <input type="radio" name="preset" value="trailer" id="trailer">
-            <label for="trailer">Mobile home</label>
-            
-            <input type="radio" name="preset" value="house" id="house">
-            <label for="house">Conventional home</label>
+            <div class="button-bar">
+              <input type="radio" name="preset" value="trailer" id="trailer">
+              <label for="trailer">Mobile home (standard interest rate)</label>
+              
+              <input type="radio" name="preset" value="house" id="house">
+              <label for="house">Conventional home</label>
+            </div>
+          
+            <div class="button-bar">
+              <input type="radio" name="preset" value="Ackley" id="ackley" checked>
+              <label for="ackley">Ackley</label>
+              
+              <input type="radio" name="preset" value="Mansfield" id="mansfield">
+              <label for="mansfield">Mansfield</label>
+              
+              <input type="radio" name="preset" value="Galler" id="galler">
+              <label for="galler">Galler</label>
+            </div>
           </section>
           <section class="preset-description">
             This is the spot where we'll have a short, one-sentence description of each preset.
@@ -75,21 +79,21 @@
           <section class="outcomes">
             <div>
               <label>Final home value:</label>
-              <input name="final-value" type="text" disabled>
+              <span class="final-value output"></span>
             </div>
             <div>
               <label>Break-even point:</label>
-              <input name="break-even" type="text" disabled>
+              <span class="break-even output"></span>
             </div>
             <div>
               <label>Total paid:</label>
-              <input name="total-paid" type="text" disabled>
+              <span class="total-paid output"></span>
             </div>
           </section>
 
           <section class="graph-container">
             <canvas class="graph" width=800 height=400></canvas>
-            <!-- TODO: final house value, break-even point -->
+            <div class="break-even balloon"><div class="contents">30 years, 2 months</div></div>
           </section>
 
         </form>
