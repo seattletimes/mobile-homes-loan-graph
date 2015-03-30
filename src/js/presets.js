@@ -1,6 +1,6 @@
 module.exports = {
   "Ackley": {
-    description: "",
+    description: "Short description of the Ackley case",
     term: 24,
     interest: 12.86,
     price: 96005.56,
@@ -9,7 +9,7 @@ module.exports = {
     depreciates: true
   },
   "Mansfield": {
-    description: "",
+    description: "Short description of the Mansfield case",
     term: 20,
     interest: 10.13,
     price: 56734,
@@ -18,7 +18,7 @@ module.exports = {
     depreciates: true
   },
   "Galler": {
-    description: "",
+    description: "Short description of the Galler case",
     term: 20,
     interest: 11.67,
     price: 37195,
@@ -27,7 +27,7 @@ module.exports = {
     depreciates: true
   },
   "trailer": {
-    description: "",
+    description: "This preset simulates the depreciation of a mobile home over time, at a rate of 5% yearly (against the original price) for the first three years, and 5% every two years after that.",
     term: 15,
     interest: 4.5,
     price: 80000,
@@ -37,7 +37,7 @@ module.exports = {
     depreciates: true
   },
   "house": {
-    description: "",
+    description: "This preset simulates home ownership in a market where values are stable, meaning that the home neither appreciates nor depreciates over time.",
     term: 30,
     interest: 3.78,
     price: 300000,

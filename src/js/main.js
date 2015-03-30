@@ -28,7 +28,11 @@ var graph = function(params) {
     valuation: valuation(params.price),
     term: params.term
   });
-  breakEven.value = `${dest.intersect} months`;
+  var years = Math.floor(dest.intersect / 12);
+  var yearText = years == 1 ? "year" : "years";
+  var months = dest.intersect % 12;
+  var monthText = months == 1 ? "month" : "months";
+  breakEven.value = `${years} ${yearText}, ${months} ${monthText}`;
   finalPrice.value = dollars(dest.finalValue);
   totalPaid.value = dollars(dest.paidTotal);
   animate(dest);

@@ -42,11 +42,13 @@ document.body.addEventListener("change", function(e) {
   params.emit("change", name, value);
 });
 
-var lockable = document.querySelectorAll(".params input");
+var lockable = qsa(".params input");
 
 var lock = function(locked) {
   lockable.forEach(el => el.checked = locked);
 };
+
+var description = document.querySelector(".preset-description");
 
 //handle presets
 params.on("change", function(prop, value) {
@@ -60,11 +62,13 @@ params.on("change", function(prop, value) {
     var termButton = document.querySelector(`input[name="term"][value="${preset.term}"]`);
     termButton.checked = true;
     params.delta = preset.depreciates ? "mobile" : "stable";
+    description.innerHTML = preset.description;
   } else {
     //switch to custom if you change a value
     if (params.preset !== "trailer" && params.preset !== "house") {
       document.querySelector(`input[name="preset"][value="trailer"]`).checked = true;
       params.preset = "trailer";
+      description.innerHTML = presets.trailer.description;
     }
   }
 });

@@ -3,6 +3,13 @@ var finance = require("./finance");
 var canvas = document.querySelector("canvas.graph");
 var context = canvas.getContext("2d");
 
+var lineDefs = [
+  // { prop: "paid", color: "blue" },
+  { prop: "remaining", color: "red" },
+  { prop: "value", color: "green" }
+];
+var shadeColor = "#EEF";
+
 var generateCurves = function(definition) {
   var { amount, down, interest, valuation, term } = definition;
   down = down * amount / 100;
@@ -32,14 +39,12 @@ var generateCurves = function(definition) {
   return curves;
 };
 
-var lineDefs = [
-  // { prop: "paid", color: "blue" },
-  { prop: "remaining", color: "red" },
-  { prop: "value", color: "green" }
-]
-
 var graphCurves = function(curves) {
   context.clearRect(0, 0, canvas.width, canvas.height);
+  context.beginPath();
+  var ix = curves.intersect / curves.length * canvas.width;
+  context.fillStyle = shadeColor;
+  context.fillRect(0, 0, ix, canvas.height);
   lineDefs.forEach(function(def) {
     context.beginPath();
     var curve = curves[def.prop];
@@ -52,10 +57,6 @@ var graphCurves = function(curves) {
     context.strokeStyle = def.color;
     context.stroke();
   });
-  context.beginPath();
-  var ix = curves.intersect / curves.length * canvas.width;
-  context.fillStyle = "rgba(255, 180, 128, .2)";
-  context.fillRect(0, 0, ix, canvas.height);
 };
 
 var morphCurves = function(src, dest, blend) {
