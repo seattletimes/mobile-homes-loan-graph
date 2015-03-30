@@ -32,10 +32,14 @@ var generateCurves = function(definition) {
     curves.remaining.push(scaleY(data.remaining));
     var value = valuation(i);
     curves.value.push(scaleY(value));
-    if (data.remaining <= value && !curves.intersect) {
-      curves.intersect = i;
-    }
   });
+  for (var i = schedule.length - 1; i >= 0; i--) {
+    var data = schedule[i];
+    if (valuation(i) < data.remaining) {
+      curves.intersect = i;
+      break;
+    }
+  }
   return curves;
 };
 
