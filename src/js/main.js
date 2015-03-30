@@ -103,11 +103,18 @@ var animate = function(dest) {
   frame();
 };
 
-graphCurves(start);
+var onResize = function(curve) {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  graphCurves(curve || current);
+};
+onResize(start);
 
 params.on("change", function() {
   graph(params);
 });
+
+window.addEventListener("resize", onResize);
 
 //start on the first preset
 params.emit("change", "preset", document.querySelector(`[name="preset"]:checked`).value);
