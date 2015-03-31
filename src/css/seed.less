@@ -17,6 +17,13 @@ body {
   padding: 0;
 }
 
+.balloon .contents {
+  padding: 8px 0;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(145,145,145,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(145,145,145,1);
+  box-shadow: 0px 0px 5px 0px rgba(145,145,145,1);
+}
+
 h3 {
   font-size: 20px; 
   text-transform: uppercase;
@@ -48,6 +55,7 @@ canvas.graph {
   background-color: #BBB;
   border-radius: 3px;
   border: 0;
+  
   input[type=radio] + label {
     color: white;
     border:0;
@@ -62,7 +70,6 @@ canvas.graph {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(145,145,145,0.45);
     -moz-box-shadow: 0px 0px 5px 0px rgba(145,145,145,0.45);
     box-shadow: 0px 0px 5px 0px rgba(145,145,145,0.45);
-
   }
 }
 
@@ -78,7 +85,6 @@ canvas.graph {
   padding: 10px;
   border-radius: 3px;
   border: 1px solid #CECECE;
-
 
   h3 {
     font-size:16px;
@@ -98,13 +104,12 @@ canvas.graph {
    background-color: #EFEFEF;
    border: 2px solid white;
    border-radius: 0;
-
  }
 
- input[type=radio]:checked + label {
-  color: black;
-  background-color: #E1E1E1;
-}
+  input[type=radio]:checked + label {
+    color: black;
+    background-color: #E1E1E1;
+  }
 }
 
 .params > div.full {
