@@ -26,7 +26,7 @@ var positionBalloon = function(dest) {
   if (dest.intersect) {
     breakEven.classList.remove("hidden");
     var ix = dest.intersect / dest.length * canvas.offsetWidth;
-    var iy = dest.value[dest.intersect] * (canvas.offsetHeight / canvas.height);
+    var iy = dest.value[dest.intersect] * canvas.offsetHeight;
     transform.setXY(breakEven, ix, iy);
     if (ix < canvas.offsetWidth / 4) {
       breakEven.classList.add("left");

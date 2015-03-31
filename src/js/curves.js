@@ -4,11 +4,10 @@ var canvas = document.querySelector("canvas.graph");
 var context = canvas.getContext("2d");
 
 var lineDefs = [
-  // { prop: "paid", color: "blue" },
   { prop: "remaining", color: "rgb(123, 90, 166)" },
   { prop: "value", color: "rgb(7, 119, 179)" }
 ];
-var shadeColor = "rgba(224, 224, 224, .5)";
+var shadeColor = "rgba(255, 218, 162, .5)";
 
 var generateCurves = function(definition) {
   var { amount, down, interest, valuation, term } = definition;
@@ -26,7 +25,7 @@ var generateCurves = function(definition) {
     intersect: null,
     length: schedule.length
   };
-  var scaleY = val => canvas.height - (val / max * canvas.height);
+  var scaleY = val => 1 - val / max;
   schedule.forEach(function(data, i) {
     curves.paid.push(scaleY(data.paid + down));
     curves.remaining.push(scaleY(data.remaining));
@@ -44,19 +43,37 @@ var generateCurves = function(definition) {
 };
 
 var graphCurves = function(curves) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetWidth / 3;
+  //draw shaded region
   context.beginPath();
   var ix = curves.intersect / curves.length * canvas.width;
   context.fillStyle = shadeColor;
   context.fillRect(0, 0, ix, canvas.height);
-  context.strokeWidth = 2;
+  //draw year axes
+  context.lineWidth = 1;
+  context.strokeStyle = "#888";
+  context.font = "16px sans-serif";
+  context.fillStyle = "black";
+  for (var i = 0; i < curves.length - 1; i += 12) {
+    context.beginPath();
+    var x = Math.round(i / curves.length * canvas.width);
+    context.moveTo(x, 0);
+    context.lineTo(x, canvas.height);
+    context.stroke();
+    if (i % (5 * 12) == 0) {
+      context.fillText(i / 12, x + 3, canvas.height - 5);
+    }
+  }
+  //draw curves
+  context.lineWidth = 2;
   lineDefs.forEach(function(def) {
     context.beginPath();
     var curve = curves[def.prop];
-    context.moveTo(0, curve[0]);
+    context.moveTo(0, curve[0] * canvas.height);
     for (var i = 0; i < curves.length; i++) {
       var x = i / curves.length * canvas.width;
-      var y = curve[i];
+      var y = curve[i] * canvas.height;
       context.lineTo(x, y);
     }
     context.strokeStyle = def.color;
