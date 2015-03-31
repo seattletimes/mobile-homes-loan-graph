@@ -5,7 +5,7 @@
       "path": "copper-termite"
     },
     "live": {
-      "bucket": "project.seattletimes.com",
+      "bucket": "projects.seattletimes.com",
       "path": "2015/investigations/mobile-homes-graph"
     }
   },
