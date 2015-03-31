@@ -17,7 +17,10 @@
           <h2 class="answer">No.</h2>
 
           <p class="chatter">
-            The graph below visualizes the amount of time it takes to reach the "break-even" point of a home loan &mdash; i.e., the point at which selling the property would pay off the remaining portion of the loan. Mobile home loans, such as those taken out by Ackley, Mansfield, and Galler, combine two toxic factors: the depreciation of the mobile home causes its resale value to drop sharply over time, while high interest rates create a punishing repayment schedule that may leave borrowers paying three or four times the principal over the lifetime of the loan.
+            Most mobile-home loans combine two troublesome factors: A typical mobile home's resale value drops sharply, while the loan's high interest rate creates a punishing repayment schedule. In the end, a borrower may end up paying three or four times the home's sale price over the lifetime of the loan.
+
+          <p class="chatter">
+            The graphs below use three buyers’ real experiences to show how long it takes for a mobile-home loan to "break even" &mdash; that's the point at which selling the property would pay off the remaining balance of the loan. You can "fine tune" the terms to see how a longer payment schedule, like a regular home mortgage would have, delays the break-even point.
 
           <h3>Choose a scenario:</h3>
           <section class="presets">
@@ -42,19 +45,19 @@
           <div class="tuning">
             <h3>Fine-tuning:</h3>
             <section class="params">
-              <div>
+              <div class="param-block">
                 <label class="parameter">Price</label>
                 <input class="parameter" name="price" type="text">
               </div>
-              <div>
+              <div class="param-block">
                 <label class="parameter">Other costs</label>
                 <input class="parameter" name="other" type="text">
               </div>
-              <div>
+              <div class="param-block">
                 <label class="parameter">Interest rate</label>
                 <input class="parameter" name="interest" type="text">
               </div>
-              <div>
+              <div class="param-block">
                 <label class="parameter">Down payment</label>
                 <input class="parameter" name="down" type="text">
               </div>
@@ -90,6 +93,11 @@
           <section class="graph-container">
             <canvas class="graph" width=600 height=300></canvas>
             <div class="break-even balloon"><div class="contents">30 years, 2 months</div></div>
+          </section>
+
+          <section class="graph-key">
+            <label> <div class="value dot"></div> Home value </label>
+            <label> <div class="remaining dot"></div> Remaining loan balance </label>
           </section>
 
         </form>

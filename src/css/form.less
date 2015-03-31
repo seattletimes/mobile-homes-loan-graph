@@ -3,9 +3,10 @@
 
 h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   font-family: @df-sans;
+  font-weight: bold;
   padding-bottom: 12px;
 }
 
@@ -41,16 +42,22 @@ h3 {
   overflow: hidden;
   padding: 4px;
 
-  & > div {
+  & > .param-block {
     float: left;
     width: 25%;
 
-    &.full {
-      clear: both;
+    @media @mobile {
+      display: block;
       float: none;
       width: 100%;
-      padding: 10px 0 0;
     }
+  }
+
+  .full {
+    clear: both;
+    float: none;
+    width: 100%;
+    padding: 10px 0 0;
   }
 
   label.parameter {

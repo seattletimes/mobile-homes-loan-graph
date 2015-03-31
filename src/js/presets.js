@@ -28,10 +28,10 @@ module.exports = {
   },
   "trailer": {
     description: "Simulates a typical mobile home purchase.",
-    term: 20,
+    term: 24,
     interest: 10,
     price: 80000,
-    other: 2000,
+    other: 4000,
     down: 10,
     customize: true,
     depreciates: true

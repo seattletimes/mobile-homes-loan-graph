@@ -6,6 +6,8 @@
 }
 
 @garland-blue: #3279C2;
+@remaining-line: rgb(123, 90, 166);
+@value-line: rgb(7, 119, 179);
 
 @import "seattletimes";
 
@@ -37,6 +39,31 @@ main.interactive {
 canvas.graph {
   border: 1px solid #eee;
   width: 100%;
+}
+
+.graph-key {
+  .display-flex;
+
+  label {
+    .flex(1 0 auto);
+    text-align: center;
+  }
+
+  .dot {
+    border-radius: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+  }
+
+  .value {
+    background: @value-line;
+  }
+  
+  .remaining {
+    background: @remaining-line;
+  }
 }
 
 .credit {
