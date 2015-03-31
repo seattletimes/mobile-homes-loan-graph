@@ -24,55 +24,36 @@ h3 {
 
 .params {
   overflow: hidden;
-
-  @media @mobile {
-    // display: none;
-  }
+  padding: 4px;
 
   & > div {
-    width: 50%;
     float: left;
-    .display-flex;
-
-    @media @mobile {
-      display: block;
-    }
-
-    label.inline, input {
-      .flex(1);
-      margin-top: 4px;
-
-      @media @mobile {
-        .flex(none);
-      }
-    }
-
-    label.inline {
-      border-bottom: 1px dotted #888;
-    }
-
-    input {
-      margin-right: 4px;
-      background: none;
-      border: none;
-      border-bottom: 1px solid black;
-      text-align: right;
-      font-size: 16px;
-    }
+    width: 25%;
 
     &.full {
       clear: both;
-      width: 100%;
       float: none;
-      margin-top: 4px;
-      padding: 20px;
-      font-size: 14px;
-
-      .display-flex;
-
-      & > label {
-        .flex(1);
-      }
+      width: 100%;
+      padding: 8px 0;
     }
   }
+
+  label.parameter {
+    display: block;
+    font-size: 14px;
+    color: #888;
+  }
+
+  input.parameter {
+    display: block;
+    border: none;
+    border-bottom: 1px solid @df-dark-gray;
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+  }
+}
+
+.output {
+  font-weight: bold;
 }

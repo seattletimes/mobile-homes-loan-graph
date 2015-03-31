@@ -20,19 +20,9 @@ var dollars = function(n) {
   if (typeof n == "string") n *= 1;
   n = (n.toFixed(2) * 1).toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   return "$" + n;
-}
+};
 
-var graph = function(params) {
-  var valuation = params.delta == "stable" ? finance.stableValuation : finance.mobileValuation;
-  var payment = params.price + params.other;
-  var dest = generateCurves({
-    amount: params.price + params.other,
-    interest: params.interest,
-    down: params.down,
-    valuation: valuation(params.price),
-    term: params.term
-  });
-
+var positionBalloon = function(dest) {
   if (dest.intersect) {
     breakEven.classList.remove("hidden");
     var ix = dest.intersect / dest.length * canvas.offsetWidth;
@@ -51,6 +41,20 @@ var graph = function(params) {
   } else {
     breakEven.classList.add("hidden");
   }
+};
+
+var graph = function(params) {
+  var valuation = params.delta == "stable" ? finance.stableValuation : finance.mobileValuation;
+  var payment = params.price + params.other;
+  var dest = generateCurves({
+    amount: params.price + params.other,
+    interest: params.interest,
+    down: params.down,
+    valuation: valuation(params.price),
+    term: params.term
+  });
+
+  positionBalloon(dest);
 
   //update text readouts
   var years = Math.floor(dest.intersect / 12);
@@ -103,8 +107,9 @@ var animate = function(dest) {
 
 var onResize = function(curve) {
   canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+  // canvas.height = canvas.offsetHeight;
   graphCurves(curve || current);
+  positionBalloon(curve || current);
 };
 onResize(start);
 
@@ -112,7 +117,7 @@ params.on("change", function() {
   graph(params);
 });
 
-window.addEventListener("resize", onResize);
+window.addEventListener("resize", () => onResize() );
 
 //start on the first preset
 params.emit("change", "preset", document.querySelector(`[name="preset"]:checked`).value);

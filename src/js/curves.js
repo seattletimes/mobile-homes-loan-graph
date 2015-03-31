@@ -5,10 +5,10 @@ var context = canvas.getContext("2d");
 
 var lineDefs = [
   // { prop: "paid", color: "blue" },
-  { prop: "remaining", color: "red" },
-  { prop: "value", color: "green" }
+  { prop: "remaining", color: "rgb(123, 90, 166)" },
+  { prop: "value", color: "rgb(7, 119, 179)" }
 ];
-var shadeColor = "#EEF";
+var shadeColor = "rgba(224, 224, 224, .5)";
 
 var generateCurves = function(definition) {
   var { amount, down, interest, valuation, term } = definition;
@@ -49,6 +49,7 @@ var graphCurves = function(curves) {
   var ix = curves.intersect / curves.length * canvas.width;
   context.fillStyle = shadeColor;
   context.fillRect(0, 0, ix, canvas.height);
+  context.strokeWidth = 2;
   lineDefs.forEach(function(def) {
     context.beginPath();
     var curve = curves[def.prop];

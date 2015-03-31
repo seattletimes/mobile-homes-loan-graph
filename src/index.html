@@ -23,10 +23,7 @@
           <section class="presets">
             <div class="generic button-bar">
               <input type="radio" name="preset" value="trailer" id="trailer">
-              <label for="trailer">Mobile home</label>
-              
-              <!-- <input type="radio" name="preset" value="house" id="house">
-              <label for="house">Conventional home</label> -->
+              <label for="trailer">Custom</label>
             </div>
           
             <div class="case-study button-bar">
@@ -40,29 +37,27 @@
               <label for="galler">Galler case</label>
             </div>
           </section>
-          <section class="preset-description">
-            This is the spot where we'll have a short, one-sentence description of each preset.
-          </section>
+          <section class="preset-description"></section>
 
-          <!-- <h3>Fine-tuning</h3> -->
+          <h3>Fine-tuning:</h3>
           <section class="params">
             <div>
-              <label class="inline">Price</label>
-              <input name="price" type="text">
+              <label class="parameter">Price</label>
+              <input class="parameter" name="price" type="text">
             </div>
             <div>
-              <label class="inline">Other costs</label>
-              <input name="other" type="text">
+              <label class="parameter">Other costs</label>
+              <input class="parameter" name="other" type="text">
             </div>
             <div>
-              <label class="inline">Interest rate</label>
-              <input name="interest" type="text">
+              <label class="parameter">Interest rate</label>
+              <input class="parameter" name="interest" type="text">
             </div>
             <div>
-              <label class="inline">Down payment</label>
-              <input name="down" type="text">
+              <label class="parameter">Down payment</label>
+              <input class="parameter" name="down" type="text">
             </div>
-            <div class="full">
+            <div class="full button-bar">
               <input type="radio" name="term" value="15" id="term15">
               <label for="term15">15 years</label>
 
@@ -77,6 +72,8 @@
             </div>
           </section>
 
+          <h3>Results:</h3>
+
           <section class="outcomes">
             <div>
               <label>Final home value:</label>
@@ -89,7 +86,7 @@
           </section>
 
           <section class="graph-container">
-            <canvas class="graph" width=800 height=400></canvas>
+            <canvas class="graph" width=600 height=300></canvas>
             <div class="break-even balloon"><div class="contents">30 years, 2 months</div></div>
           </section>
 
