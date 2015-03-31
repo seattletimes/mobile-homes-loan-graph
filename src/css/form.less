@@ -39,7 +39,6 @@ h3 {
 }
 
 .params {
-  overflow: hidden;
   padding: 4px;
 
   & > .param-block {
@@ -79,4 +78,39 @@ h3 {
 
 .output {
   font-weight: bold;
+}
+
+.hover-dot {
+  position: absolute;
+  background: @df-dark-gray;
+  color: @df-off-white;
+  border-radius: 100%;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-left: 4px;
+  display: inline-block;
+  vertical-align: text-top;
+  font-family: @df-sans;
+
+  @media @mobile {
+    display: none;
+  }
+
+  .hover-text {
+    display: none;
+    position: absolute;
+    padding: 4px;
+    background: white;
+    color: @df-dark-gray;
+    border: 1px solid @df-light-gray;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(144, 144, 144, .5);
+    text-align: left;
+  }
+
+  &:hover .hover-text {
+    display: block;
+  }
 }
