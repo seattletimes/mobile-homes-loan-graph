@@ -5,13 +5,19 @@ input[type=radio] {
   display: none;
 
   & + label {
-    padding: 4px;
-    border: 1px solid #555;
+    padding: 6px 4px;
+    border: 1px solid #AFAFAF;
     color: #555;
     font-family: @df-sans;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
+    box-shadow: 0 0 5px 0 rgba(145, 145, 145, .5);
+
+    .alt & {
+      background-color: #EFEFEF;
+      border: 1px solid white;
+    }
 
     &:first-of-type {
       border-radius: 4px 0 0 4px;
@@ -30,6 +36,14 @@ input[type=radio] {
     color: white;
     background: #555;
     font-weight: bold;
+    border: 1px solid #333;
+    letter-spacing: 1px;
+
+    .alt & {
+      color: @garland-blue;
+      background-color: #E1E1E1;
+      border: 1px solid @garland-blue;
+    }
   }
 }
 

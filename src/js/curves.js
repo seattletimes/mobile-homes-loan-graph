@@ -7,7 +7,7 @@ var lineDefs = [
   { prop: "remaining", color: "rgb(123, 90, 166)" },
   { prop: "value", color: "rgb(7, 119, 179)" }
 ];
-var shadeColor = "rgba(255, 218, 162, .5)";
+var shadeColor = "rgba(213, 228, 240, .5)";
 
 var generateCurves = function(definition) {
   var { amount, down, interest, valuation, term } = definition;
