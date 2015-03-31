@@ -2,7 +2,7 @@ module.exports = {
   "Ackley": {
     description: "Kirk and Patricia Ackley, of Ephrata, Wash., bought a Clayton home in 2006 despite a last-minute change in promised loan terms.",
     term: 24,
-    interest: 12.86,
+    interest: 12.5,
     price: 96005.56,
     other: 10074.92,
     down: 4.9,
