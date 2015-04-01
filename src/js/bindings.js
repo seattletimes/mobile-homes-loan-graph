@@ -2,6 +2,7 @@ var qsa = require("./qsa");
 var EventEmitter = require("events").EventEmitter;
 
 var presets = require("./presets");
+var inputs = require("./inputs");
 
 //force Firefox to use the default checkboxes
 var defaults = qsa("[checked]");
@@ -56,7 +57,10 @@ params.on("change", function(prop, value) {
     var preset = presets[value];
     for (var key in preset) {
       var value = preset[key];
-      if (bindings[key]) bindings[key].value = value;
+      if (bindings[key]) {
+        bindings[key].value = value;
+        inputs.blur.call(bindings[key]);
+      }
       params[key] = value;
     }
     var termButton = document.querySelector(`input[name="term"][value="${preset.term}"]`);

@@ -18,8 +18,7 @@ var canvas = document.querySelector("canvas.graph");
 
 var dollars = function(n) {
   if (typeof n == "string") n *= 1;
-  n = (n.toFixed(2) * 1).toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-  return "$" + n;
+  return "$" + Math.round(n).toLocaleString().replace(/\.0+$/, "");
 };
 
 var positionBalloon = function(dest) {
@@ -62,10 +61,10 @@ var graph = function(params) {
   var months = dest.intersect % 12;
   var monthText = months == 1 ? "month" : "months";
   var duration = `Break-even:<br>${years} ${yearText}, ${months} ${monthText}`;
-  var priceComparison = (dest.finalValue / params.price * 100).toFixed(1);
-  var paidComparison = (dest.paidTotal / payment * 100).toFixed(1);
+  var priceComparison = Math.round(dest.finalValue / params.price * 100);
+  var paidComparison = Math.round(dest.paidTotal / payment * 100);
   breakEvenContents.innerHTML = duration;
-  finalPrice.innerHTML = `${dollars(dest.finalValue)} (${priceComparison}% original value)`;
+  finalPrice.innerHTML = `${dollars(dest.finalValue)} (${priceComparison}% original)`;
   totalPaid.innerHTML = `${dollars(dest.paidTotal)} (${paidComparison}% principal)`;
   animate(dest);
 };

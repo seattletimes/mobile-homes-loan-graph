@@ -11,19 +11,19 @@ module.exports = {
   "Mansfield": {
     description: "After losing her previous home to a tornado, Dorothy Mansfield, of Bladenboro, N.C., bought a home from Clayton in 2011.",
     term: 20,
-    interest: 10.13,
+    interest: 9.74,
     price: 56734,
-    other: 1894,
+    other: 3750.10,
     down: 0,
     depreciates: true
   },
   "Galler": {
     description: "Tiffany Galler was a single mother living in Crestview, Fla., in 2005, when she purchased a mobile home with a Clayton loan.",
     term: 20,
-    interest: 11.67,
+    interest: 10.5,
     price: 37195,
-    other: 5084.7,
-    down: 9.5,
+    other: 5322.34,
+    down: 9.4,
     depreciates: true
   },
   "trailer": {

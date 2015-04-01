@@ -43,7 +43,7 @@
             <section class="params">
               <div class="param-block">
                 <label class="parameter">Price</label>
-                <input class="parameter" name="price" type="text">
+                <input class="parameter" name="price" type="text" data-format="dollars">
               </div>
               <div class="param-block">
                 <label class="parameter">
@@ -54,15 +54,22 @@
                     </div>
                   </span>
                 </label>
-                <input class="parameter" name="other" type="text">
+                <input class="parameter" name="other" type="text" data-format="dollars">
               </div>
               <div class="param-block">
-                <label class="parameter">Interest rate</label>
-                <input class="parameter" name="interest" type="text">
+                <label class="parameter">
+                  Interest rate
+                  <span class="hover-dot">?
+                    <div class="hover-text">
+                      Chart relies on the borrower's base interest rate, not the annual percentage rate (APR), which is generally higher.
+                    </div>
+                  </span>
+                </label>
+                <input class="parameter" name="interest" type="text" data-format="percent">
               </div>
               <div class="param-block">
                 <label class="parameter">Down payment</label>
-                <input class="parameter" name="down" type="text">
+                <input class="parameter" name="down" type="text" data-format="percent">
               </div>
               <div class="full button-bar alt">
                 <input type="radio" name="term" value="15" id="term15">
@@ -105,7 +112,7 @@
 
         </form>
 
-        <cite>Source: XXX</cite>
+        <cite>Source: Individual loan documents; state of Indiana</cite>
 
         <p class="notes">
           * Depreciation based on state of Indiana guidelines for average-quality mobile homes. The model doesn’t account for expenses that aren't financed in the loan, including land preparation, installation, home moving and real estate agent fees.
