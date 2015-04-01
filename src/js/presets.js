@@ -27,7 +27,7 @@ module.exports = {
     depreciates: true
   },
   "trailer": {
-    description: "Explore how interest rates, loan terms, down payments and costs shape a borrower’s loan experience.",
+    description: "Explore how interest rates, loan terms, down payments and costs shape a borrower’s loan experience, by setting your own values below.",
     term: 24,
     interest: 10,
     price: 80000,
