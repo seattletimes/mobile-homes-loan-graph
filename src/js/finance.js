@@ -40,6 +40,13 @@ var mobileValuation = function(amount) {
   };
 }
 
+//compounded 3% depreciation
+mobileValuation = function(amount) {
+  return function(month) {
+    return amount * Math.pow(.96, month / 12)
+  }
+}
+
 module.exports = {
   pmt,
   schedule,
