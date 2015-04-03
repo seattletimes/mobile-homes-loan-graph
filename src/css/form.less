@@ -30,6 +30,10 @@ h3 {
   padding: 10px 0;
   font-style: italic;
   font-family: @df-serif;
+
+  @media @mobile {
+    font-size: 13px;
+  }
 }
 
 .tuning {
@@ -39,8 +43,43 @@ h3 {
   border: 1px solid #CECECE;
 }
 
+.fine-tuning {
+  position: relative;
+
+  @media @mobile {
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      content: ">";
+      font-size: 20px;
+      font-weight: bold;
+      color: @df-middle-gray;
+      transition: -webkit-transform .3s ease-out;
+      transition: transform .3s ease-out;
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+
+    .show &::after {
+      -webkit-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+  }
+}
+
 .params {
   padding: 4px;
+
+  @media @mobile {
+    display: none;
+
+    .show & {
+      display: block;
+    }
+  }
 
   & > .param-block {
     float: left;

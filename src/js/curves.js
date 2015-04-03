@@ -44,7 +44,7 @@ var generateCurves = function(definition) {
 
 var graphCurves = function(curves) {
   canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetWidth / 3;
+  canvas.height = canvas.offsetWidth / 2;
   //draw shaded region
   context.beginPath();
   var ix = curves.intersect / curves.length * canvas.width;

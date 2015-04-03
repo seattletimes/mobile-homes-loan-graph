@@ -121,3 +121,8 @@ window.addEventListener("resize", () => onResize() );
 
 //start on the first preset
 params.emit("change", "preset", document.querySelector(`[name="preset"]:checked`).value);
+
+//add listener to show/hide fine-tuning on mobile
+document.querySelector(".fine-tuning").addEventListener("click", e => {
+  document.querySelector(".tuning").classList.toggle("show");
+});
